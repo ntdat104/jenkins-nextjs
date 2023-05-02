@@ -1,0 +1,19 @@
+version: '2.1'
+orbs:
+  node: circleci/node@5.1.0
+jobs:
+  test-build:
+    executor: node/default
+    steps:
+      - checkout
+      - run: sudo npm install -g npm@latest
+      - run:
+          name: install dependencies
+          command: npm install
+      - run:
+          name: build
+          command: npm run build
+workflows:
+  simplize-app:
+    jobs:
+      - test-build
